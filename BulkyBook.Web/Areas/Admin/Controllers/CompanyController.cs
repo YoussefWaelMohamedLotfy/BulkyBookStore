@@ -1,12 +1,13 @@
 ﻿using BulkyBook.DataAccess.IRepository;
 using BulkyBook.Models;
-using BulkyBook.Models.ViewModels;
+using BulkyBook.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BulkyBook.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class CompanyController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -77,7 +78,7 @@ namespace BulkyBook.Web.Areas.Admin.Controllers
         public IActionResult Delete(int? id)
         {
             var obj = _unitOfWork.Company.GetFirstOrDefault(u => u.Id == id);
-            
+
             if (obj == null)
                 return Json(new { success = false, message = "Error while deleting" });
 
