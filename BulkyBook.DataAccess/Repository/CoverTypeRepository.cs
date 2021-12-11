@@ -9,10 +9,5 @@ namespace BulkyBook.DataAccess.Repository
         public CoverTypeRepository(ApplicationDbContext db) : base(db)
         {
         }
-
-        public void Update(CoverType obj)
-        {
-            _db.CoverTypes.Update(obj);
-        }
     }
 }

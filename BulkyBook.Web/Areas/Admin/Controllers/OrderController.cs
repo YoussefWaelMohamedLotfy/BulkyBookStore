@@ -116,22 +116,17 @@ namespace BulkyBook.Web.Areas.Admin.Controllers
         {
             var orderHeaderFromDb = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == OrderVM.OrderHeader.Id, tracked: false);
 
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<OrderHeader, OrderHeader>());
-            var mapper = config.CreateMapper();
+            orderHeaderFromDb.Name = OrderVM.OrderHeader.Name;
+            orderHeaderFromDb.PhoneNumber = OrderVM.OrderHeader.PhoneNumber;
+            orderHeaderFromDb.StreetAddress = OrderVM.OrderHeader.StreetAddress;
+            orderHeaderFromDb.City = OrderVM.OrderHeader.City;
+            orderHeaderFromDb.State = OrderVM.OrderHeader.State;
+            orderHeaderFromDb.PostalCode = OrderVM.OrderHeader.PostalCode;
 
-            mapper.Map(OrderVM.OrderHeader, orderHeaderFromDb);
-
-            //orderHeaderFromDb.Name = OrderVM.OrderHeader.Name;
-            //orderHeaderFromDb.PhoneNumber = OrderVM.OrderHeader.PhoneNumber;
-            //orderHeaderFromDb.StreetAddress = OrderVM.OrderHeader.StreetAddress;
-            //orderHeaderFromDb.City = OrderVM.OrderHeader.City;
-            //orderHeaderFromDb.State = OrderVM.OrderHeader.State;
-            //orderHeaderFromDb.PostalCode = OrderVM.OrderHeader.PostalCode;
-
-            //if (OrderVM.OrderHeader.Carrier != null)
-            //    orderHeaderFromDb.Carrier = OrderVM.OrderHeader.Carrier;
-            //if (OrderVM.OrderHeader.TrackingNumber != null)
-            //    orderHeaderFromDb.TrackingNumber = OrderVM.OrderHeader.TrackingNumber;
+            if (OrderVM.OrderHeader.Carrier != null)
+                orderHeaderFromDb.Carrier = OrderVM.OrderHeader.Carrier;
+            if (OrderVM.OrderHeader.TrackingNumber != null)
+                orderHeaderFromDb.TrackingNumber = OrderVM.OrderHeader.TrackingNumber;
 
             _unitOfWork.OrderHeader.Update(orderHeaderFromDb);
             _unitOfWork.Save();

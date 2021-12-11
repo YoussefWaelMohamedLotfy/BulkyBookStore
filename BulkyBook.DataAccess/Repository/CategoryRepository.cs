@@ -9,10 +9,5 @@ namespace BulkyBook.DataAccess.Repository
         public CategoryRepository(ApplicationDbContext db) : base(db)
         {
         }
-
-        public void Update(Category obj)
-        {
-            _db.Categories.Update(obj);
-        }
     }
 }

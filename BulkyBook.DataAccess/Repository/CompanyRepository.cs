@@ -9,10 +9,5 @@ namespace BulkyBook.DataAccess.Repository
         public CompanyRepository(ApplicationDbContext db) : base(db)
         {
         }
-
-        public void Update(Company obj)
-        {
-           _db.Update(obj);
-        }
     }
 }

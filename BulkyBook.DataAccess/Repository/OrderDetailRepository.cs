@@ -9,10 +9,5 @@ namespace BulkyBook.DataAccess.Repository
         public OrderDetailRepository(ApplicationDbContext db) : base(db)
         {
         }
-
-        public void Update(OrderDetail obj)
-        {
-            _db.OrderDetail.Update(obj);
-        }
     }
 }

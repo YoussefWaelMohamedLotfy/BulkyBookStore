@@ -10,11 +10,6 @@ namespace BulkyBook.DataAccess.Repository
         {
         }
 
-        public void Update(OrderHeader obj)
-        {
-            _db.OrderHeaders.Update(obj);
-        }
-
         public void UpdateStatus(int id, string orderStatus, string? paymentStatus = null)
         {
             var orderFromDb = _db.OrderHeaders.FirstOrDefault(u => u.Id == id);
